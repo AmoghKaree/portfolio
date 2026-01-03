@@ -14,8 +14,8 @@ body {
     color: #e8e8f0;
     line-height: 1.6;
     overflow-x: hidden;
-    /* Removed overflow: hidden to allow scrolling */
     position: relative;
+    min-height: 100vh;
 }
 
 #vanta-bg {
@@ -27,9 +27,9 @@ body {
     z-index: 0;
 }
 
-/* Navigation - Now Stagnant (Absolute) */
+/* Navigation - Stays aligned with the text */
 nav {
-    position: absolute; /* Changed from fixed so it stays at the top */
+    position: absolute;
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -38,10 +38,10 @@ nav {
 
 nav .nav-container {
     max-width: 1400px;
-    margin: 0 auto;
+    margin-left: 15%; /* Moves the Nav to match the Hero text */
     padding: 0 3rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 4rem;
 }
@@ -52,7 +52,6 @@ nav .nav-container {
     color: #60a5fa;
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
 }
 
 .nav-links {
@@ -87,57 +86,83 @@ nav .nav-container {
     z-index: 9999;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
-    transition: width 0.3s, height 0.3s;
 }
 
-/* Container */
+/* --- Hero Section (Shifted toward Middle) --- */
 .container {
     max-width: 1400px;
-    margin: 0 auto;
+    margin-left: 15%; /* This moves the content away from the left edge toward the middle */
     padding: 0 3rem;
     position: relative;
     z-index: 10;
 }
 
-/* --- Projects Section --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: flex-start; 
+    justify-content: flex-start;
+    padding-top: 25vh; /* Adjusts vertical height */
+}
+
+.hero-content {
+    text-align: left;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+.hero-description {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: #ffffff;
+    line-height: 1.8;
+}
+
+.highlight {
+    color: #60a5fa;
+    font-weight: 700;
+}
+
+/* --- Organic Projects Section --- */
 .projects-page {
-    min-height: 100vh;
-    padding: 160px 0;
+    padding: 180px 0 100px 0;
+    position: relative;
+    z-index: 10;
 }
 
 .projects-header {
-    margin-bottom: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    margin-bottom: 80px;
 }
 
 .section-title {
     font-size: 4rem;
-    line-height: 0.9;
     text-transform: uppercase;
     font-weight: 800;
 }
 
-/* The Scattered Grid */
 .organic-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
+    gap: 40px;
     align-items: start;
-    position: relative;
 }
 
 .project-card {
     position: relative;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    /* Removed the float animation here */
 }
 
-/* Varying Sizes & Placements (Organic/Randomized Look) */
-.card-large { grid-column: 1 / 7; width: 100%; } 
-.card-small { grid-column: 9 / 12; width: 100%; margin-top: 180px; } 
-.card-medium { grid-column: 4 / 9; width: 100%; margin-top: 100px; } 
+/* Scatter Placements */
+.card-large { grid-column: 1 / 8; }
+.card-small { grid-column: 9 / 13; margin-top: 150px; }
+.card-medium { grid-column: 4 / 10; margin-top: 50px; }
 
 .project-num {
     display: block;
@@ -154,7 +179,7 @@ nav .nav-container {
     overflow: hidden;
     background: #000;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    transition: 0.4s;
 }
 
 .project-media video {
@@ -170,10 +195,8 @@ nav .nav-container {
     text-transform: lowercase;
 }
 
-/* Hover States - Only moves when YOU interact with it */
 .project-card:hover {
-    transform: scale(1.03) translateY(-10px);
-    z-index: 20;
+    transform: scale(1.02) translateY(-10px);
 }
 
 .project-card:hover .project-media {
@@ -181,9 +204,9 @@ nav .nav-container {
     box-shadow: 0 0 40px rgba(0, 217, 255, 0.2);
 }
 
-/* Social Icons */
+/* Social & Footer */
 .social-icons {
-    position: fixed; /* Kept fixed so they are always accessible while scrolling */
+    position: fixed;
     bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
@@ -202,24 +225,27 @@ nav .nav-container {
     justify-content: center;
     color: #0f0f23;
     text-decoration: none;
-    font-size: 1.3rem;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: 0.3s;
 }
 
 .social-icon:hover {
-    transform: translateY(-8px) rotate(5deg);
+    transform: translateY(-5px);
     background: #ffffff;
-    box-shadow: 0 10px 20px rgba(0, 217, 255, 0.4);
 }
 
 .footer-text {
-    position: absolute; /* Changed to absolute so it stays at the very bottom of the page content */
-    bottom: 2rem;
-    width: 100%;
+    position: relative;
+    padding-bottom: 2rem;
     text-align: center;
     color: rgba(107, 107, 128, 0.4);
     font-size: 0.85rem;
-    z-index: 100;
+    z-index: 10;
+}
+
+/* Animations */
+.hero-content {
+    opacity: 0;
+    animation: fadeInUp 1s forwards;
 }
 
 @keyframes fadeInUp {
@@ -228,9 +254,9 @@ nav .nav-container {
 }
 
 @media (max-width: 968px) {
-    .organic-grid { display: flex; flex-direction: column; gap: 60px; }
-    .card-large, .card-small, .card-medium { margin-top: 0; }
-    .section-title { font-size: 3rem; }
-    .custom-cursor { display: none; }
-    * { cursor: auto; }
+    .container, nav .nav-container { margin-left: 0; padding: 0 2rem; }
+    .organic-grid { display: flex; flex-direction: column; }
+    .card-small, .card-medium { margin-top: 0; }
+    .hero { justify-content: center; text-align: center; padding-top: 15vh; }
+    .hero-content { text-align: center; }
 }
