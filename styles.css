@@ -4,8 +4,13 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* This prevents padding from adding extra height */
     cursor: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
 }
 
 body {
@@ -13,9 +18,22 @@ body {
     background: #0f0f23;
     color: #e8e8f0;
     line-height: 1.6;
-    overflow-x: hidden;
     position: relative;
+}
+
+/* --- THE FIX: Home Page Scroll Lock --- */
+body.home-page {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Disables scroll strictly */
+    position: fixed; /* Prevents mobile "bounce" scrolling */
+}
+
+/* Projects Page allows scrolling */
+body.project-page {
     min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #vanta-bg {
@@ -25,9 +43,10 @@ body {
     width: 100%;
     height: 100%;
     z-index: 0;
+    pointer-events: none;
 }
 
-/* Navigation - Stays aligned with the text */
+/* Navigation - Stagnant and shifted to match text */
 nav {
     position: absolute;
     top: 0;
@@ -38,7 +57,7 @@ nav {
 
 nav .nav-container {
     max-width: 1400px;
-    margin-left: 15%; /* Moves the Nav to match the Hero text */
+    margin-left: 15%; /* Horizontal align with hero text */
     padding: 0 3rem;
     display: flex;
     justify-content: flex-start;
@@ -88,10 +107,10 @@ nav .nav-container {
     box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
 }
 
-/* --- Hero Section (Shifted toward Middle) --- */
+/* --- Hero Section (Shifted Left-Middle) --- */
 .container {
     max-width: 1400px;
-    margin-left: 15%; /* This moves the content away from the left edge toward the middle */
+    margin-left: 15%; 
     padding: 0 3rem;
     position: relative;
     z-index: 10;
@@ -102,7 +121,7 @@ nav .nav-container {
     display: flex;
     align-items: flex-start; 
     justify-content: flex-start;
-    padding-top: 25vh; /* Adjusts vertical height */
+    padding-top: 25vh; /* Vertical placement */
 }
 
 .hero-content {
@@ -132,19 +151,16 @@ nav .nav-container {
 
 /* --- Organic Projects Section --- */
 .projects-page {
-    padding: 180px 0 100px 0;
+    padding: 180px 0 120px 0;
     position: relative;
     z-index: 10;
-}
-
-.projects-header {
-    margin-bottom: 80px;
 }
 
 .section-title {
     font-size: 4rem;
     text-transform: uppercase;
     font-weight: 800;
+    margin-bottom: 80px;
 }
 
 .organic-grid {
@@ -159,10 +175,9 @@ nav .nav-container {
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Scatter Placements */
 .card-large { grid-column: 1 / 8; }
-.card-small { grid-column: 9 / 13; margin-top: 150px; }
-.card-medium { grid-column: 4 / 10; margin-top: 50px; }
+.card-small { grid-column: 9 / 13; margin-top: 180px; }
+.card-medium { grid-column: 4 / 10; margin-top: 80px; }
 
 .project-num {
     display: block;
@@ -224,18 +239,13 @@ nav .nav-container {
     align-items: center;
     justify-content: center;
     color: #0f0f23;
-    text-decoration: none;
     transition: 0.3s;
-}
-
-.social-icon:hover {
-    transform: translateY(-5px);
-    background: #ffffff;
+    text-decoration: none;
 }
 
 .footer-text {
     position: relative;
-    padding-bottom: 2rem;
+    padding: 100px 0 2rem 0;
     text-align: center;
     color: rgba(107, 107, 128, 0.4);
     font-size: 0.85rem;
@@ -258,5 +268,5 @@ nav .nav-container {
     .organic-grid { display: flex; flex-direction: column; }
     .card-small, .card-medium { margin-top: 0; }
     .hero { justify-content: center; text-align: center; padding-top: 15vh; }
-    .hero-content { text-align: center; }
+    body.home-page { overflow-y: hidden; } /* Keep it locked on mobile too */
 }
