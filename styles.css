@@ -18,6 +18,12 @@ body {
     min-height: 100vh;
 }
 
+/* Disable scrolling on index.html only */
+body.home-page {
+    overflow: hidden;
+    height: 100vh;
+}
+
 #vanta-bg {
     position: fixed;
     top: 0;
