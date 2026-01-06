@@ -1,20 +1,23 @@
 // Initialize Vanta.js GLOBE Background - Cyan with bright white core
-VANTA.GLOBE({
-    el: "#vanta-bg",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    color: 0x00d9ff,           // Bright cyan for entire globe
-    color2: 0xffffff,          // Bright white for illuminated core
-    backgroundColor: 0x0f0f23, // Dark navy background
-    size: 1.00,
-    points: 10.00,
-    maxDistance: 20.00
-});
+// Initialize Vanta.js on all pages EXCEPT project detail pages
+if (!document.body.classList.contains('project-detail-page-body')) {
+    VANTA.GLOBE({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x00d9ff,
+        color2: 0xffffff,
+        backgroundColor: 0x0f0f23,
+        size: 1.00,
+        points: 10.00,
+        maxDistance: 20.00
+    });
+}
 
 // Custom Cursor - Orb to Halo Transformation
 const cursor = document.querySelector('.custom-cursor');
