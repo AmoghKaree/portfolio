@@ -476,6 +476,24 @@ nav .nav-container {
 .back-btn:hover i {
     transform: translateX(-5px);
 }
+.architecture-diagram {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.architecture-diagram img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .architecture-diagram img {
+        max-width: 100%;
+    }
+}
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
@@ -505,7 +523,6 @@ nav .nav-container {
         justify-content: center;
     }
 }
-
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
